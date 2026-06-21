@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethiopian Orthodox Monastery — Preserving Faith & Heritage</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F8F5EE',
+                        'deep-blue': '#0D2C54',
+                        gold: '#C8A34D',
+                        'deep-red': '#7A1F1F',
+                        'text-dark': '#222222',
+                        'text-muted': '#555555',
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        cormorant: ['"Cormorant Garamond"', 'serif'],
+                        eb: ['"EB Garamond"', 'serif'],
+                        source: ['"Source Sans 3"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Paper Texture */
+        body {
+            background-color: #F8F5EE;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F8F5EE; }
+        ::-webkit-scrollbar-thumb { background: #C8A34D; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0D2C54; }
+
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+        .fade-in-delay-4 { transition-delay: 0.4s; }
+
+        /* Mission Card Hover */
+        .mission-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .mission-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(13, 44, 84, 0.12);
+        }
+
+        /* Gallery Masonry */
+        .masonry {
+            column-count: 3;
+            column-gap: 24px;
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 1024px) { .masonry { column-count: 2; } }
+        @media (max-width: 640px) { .masonry { column-count: 1; } }
+
+        /* Gallery Hover */
+        .gallery-img-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+        .gallery-img-wrapper img {
+            transition: transform 0.6s ease, filter 0.6s ease;
+        }
+        .gallery-img-wrapper:hover img {
+            transform: scale(1.03);
+            filter: brightness(0.7);
+        }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .gallery-img-wrapper:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Manuscript Divider */
+        .manuscript-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 0;
+        }
+        .manuscript-divider .line {
+            height: 1px;
+            width: 80px;
+            background: linear-gradient(to right, transparent, #C8A34D, transparent);
+        }
+        .manuscript-divider .diamond {
+            width: 8px;
+            height: 8px;
+            background: #C8A34D;
+            transform: rotate(45deg);
+        }
+
+        /* Timeline */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #C8A34D, #C8A34D, transparent);
+            transform: translateX(-50%);
+        }
+        @media (max-width: 768px) {
+            .timeline-line { left: 20px; }
+        }
+        .timeline-node {
+            width: 16px;
+            height: 16px;
+            background: #C8A34D;
+            border: 3px solid #0D2C54;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        @media (max-width: 768px) {
+            .timeline-node { left: 20px; }
+        }
+
+        /* Announcement Date Block */
+        .date-block {
+            min-width: 64px;
+        }
+
+        /* Map Placeholder */
+        .map-container {
+            background: #e8e4db;
+            position: relative;
+            overflow: hidden;
+        }
+        .map-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 30h60M30 0v60' stroke='%23ccc5b4' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        /* Cross Pattern Overlay */
+        .cross-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M27 0h6v18h-6zM27 42h6v18h-6zM0 27h18v6H0zM42 27h18v6H42z' fill='%23ffffff' opacity='0.07'/%3E%3C/svg%3E");
+        }
+
+        /* Navbar scroll effect */
+        .nav-scrolled {
+            background: rgba(248, 245, 238, 0.95) !important;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 20px rgba(0,0,0,0.08);
+        }
+        .nav-scrolled .nav-link { color: #222222 !important; }
+        .nav-scrolled .nav-logo { color: #0D2C54 !important; }
+        .nav-scrolled .nav-cta { background: #7A1F1F !important; color: #fff !important; }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0,0,0,0.92);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border: 4px solid #C8A34D;
+        }
+    </style>
+</head>
+<body class="font-source text-text-dark antialiased">
+
+    <!-- ============ NAVIGATION ============ -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 nav-logo text-white transition-colors duration-300">
+                <svg viewBox="0 0 50 70" class="w-8 h-11" fill="currentColor">
+                    <rect x="20" y="0" width="10" height="50" rx="1.5"/>
+                    <rect x="0" y="16" width="50" height="10" rx="1.5"/>
+                    <rect x="17" y="-2" width="16" height="5" rx="2"/>
+                    <rect x="-2" y="13" width="5" height="16" rx="2"/>
+                    <rect x="47" y="13" width="5" height="16" rx="2"/>
+                    <rect x="22" y="18" width="6" height="6" transform="rotate(45 25 21)" fill="rgba(255,255,255,0.3)"/>
+                    <rect x="21" y="50" width="8" height="14"/>
+                    <rect x="17" y="62" width="16" height="4" rx="2"/>
+                </svg>
+                <span class="font-cinzel text-sm tracking-[0.15em] font-semibold hidden sm:block">DEBRE LIBANOS</span>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="#mission" class="nav-link text-white/80 hover:text-gold text-xs font-source font-medium tracking-wide uppercase transition-colors duration-300">Mission</a>
+                <a href="#history" class="nav-link text-white/80 hover:text-gold text-xs font-source font-medium tracking-wide uppercase transition-colors duration-300">History</a>
+                <a href="#donate" class="nav-link text-white/80 hover:text-gold text-xs font-source font-medium tracking-wide uppercase transition-colors duration-300">Donate</a>
+                <a href="#gallery" class="nav-link text-white/80 hover:text-gold text-xs font-source font-medium tracking-wide uppercase transition-colors duration-300">Gallery</a>
+                <a href="#contact" class="nav-link text-white/80 hover:text-gold text-xs font-source font-medium tracking-wide uppercase transition-colors duration-300">Contact</a>
+            </div>
+
+            <!-- CTA + Mobile Toggle -->
+            <div class="flex items-center gap-4">
+                <a href="#donate" class="nav-cta bg-deep-red text-white px-6 py-2.5 font-cinzel text-xs tracking-[0.12em] uppercase hover:bg-gold hover:text-deep-blue transition-all duration-300">Donate</a>
+                <button id="mobileMenuBtn" class="lg:hidden nav-link text-white p-2">
+                    <iconify-icon icon="lucide:menu" width="24" height="24"></iconify-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="lg:hidden hidden bg-deep-blue/98 backdrop-blur-md">
+            <div class="px-6 py-8 flex flex-col gap-6">
+                <a href="#mission" class="mobile-link text-cream/80 hover:text-gold font-cinzel text-sm tracking-widest uppercase transition-colors">Mission</a>
+                <a href="#history" class="mobile-link text-cream/80 hover:text-gold font-cinzel text-sm tracking-widest uppercase transition-colors">History</a>
+                <a href="#donate" class="mobile-link text-cream/80 hover:text-gold font-cinzel text-sm tracking-widest uppercase transition-colors">Donate</a>
+                <a href="#gallery" class="mobile-link text-cream/80 hover:text-gold font-cinzel text-sm tracking-widest uppercase transition-colors">Gallery</a>
+                <a href="#contact" class="mobile-link text-cream/80 hover:text-gold font-cinzel text-sm tracking-widest uppercase transition-colors">Contact</a>
+                <div class="manuscript-divider mt-2">
+                    <div class="line"></div><div class="diamond"></div><div class="line"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- ============ HERO ============ -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="https://picsum.photos/seed/ethiopian-monastery-dawn/1920/1080.jpg" alt="Monastery at Dawn" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-deep-blue/70 via-deep-blue/60 to-text-dark/80"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-[800px] mx-auto px-6 text-center pt-20">
+            <!-- Eyebrow -->
+            <p class="fade-in font-cinzel text-gold text-xs tracking-[0.3em] uppercase mb-6">Ethiopian Orthodox Monastery</p>
+
+            <!-- Headline -->
+            <h1 class="fade-in fade-in-delay-1 font-cormorant text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-tight tracking-tight mb-8">
+                Preserving Faith, Heritage,<br class="hidden sm:block"> Prayer, and Community.
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="fade-in fade-in-delay-2 font-source text-cream/80 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-[640px] mx-auto">
+                An Ethiopian Orthodox Monastery dedicated to worship, spiritual guidance, charitable service, and the preservation of sacred tradition.
+            </p>
+
+            <!-- CTAs -->
+            <div class="fade-in fade-in-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#donate" class="bg-deep-red text-white px-10 py-4 font-cinzel text-xs tracking-[0.15em] uppercase hover:bg-red-900 transition-all duration-300 w-full sm:w-auto text-center">
+                    Support The Monastery
+                </a>
+                <a href="#history" class="border border-gold text-gold px-10 py-4 font-cinzel text-xs tracking-[0.15em] uppercase hover:bg-gold hover:text-deep-blue transition-all duration-300 w-full sm:w-auto text-center">
+                    Learn Our History
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gold/50">
+            <span class="font-cinzel text-[10px] tracking-[0.2em] uppercase">Scroll</span>
+            <iconify-icon icon="lucide:chevron-down" width="16" height="16" class="animate-bounce"></iconify-icon>
+        </div>
+    </section>
+
+
+    <!-- ============ MISSION ============ -->
+    <section id="mission" class="py-20 md:py-32">
+        <div class="max-w-[1280px] mx-auto px-6">
+            <!-- Section Intro -->
+            <div class="max-w-[800px] mx-auto text-center mb-16 md:mb-20">
+                <p class="fade-in font-cinzel text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Our Sacred Purpose</p>
+                <h2 class="fade-in fade-in-delay-1 font-cinzel text-deep-blue text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-6">Our Sacred Mission</h2>
+                <div class="fade-in fade-in-delay-2 manuscript-divider">
+                    <div class="line"></div><div class="diamond"></div><div class="line"></div>
+                </div>
+                <p class="fade-in fade-in-delay-3 font-source text-text-muted text-lg font-light leading-relaxed mt-6">
+                    Rooted in the ancient traditions of the Ethiopian Orthodox Tewahedo Church, our monastery serves as a beacon of faith, scholarship, and compassion.
+                </p>
+            </div>
+
+            <!-- Mission Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+                <!-- Faith -->
+                <div class="fade-in mission-card bg-white p-8 text-center shadow-sm">
+                    <div class="w-14 h-14 mx-auto mb-5 flex items-center justify-center">
+                        <svg viewBox="0 0 40 56" class="w-8 h-11 text-gold" fill="currentColor">
+                            <rect x="16" y="0" width="8" height="42" rx="1"/>
+                            <rect x="0" y="13" width="40" height="8" rx="1"/>
+                            <rect x="14" y="-1" width="12" height="4" rx="1.5"/>
+                            <rect x="17" y="42" width="6" height="10"/>
+                            <rect x="14" y="50" width="12" height="3" rx="1.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-cinzel text-deep-blue text-base font-semibold mb-3">Faith</h3>
+                    <p class="font-source text-text-muted text-sm font-light leading-relaxed">Upholding the ancient traditions of the Ethiopian Orthodox Tewahedo Church.</p>
+                </div>
+
+                <!-- Prayer -->
+                <div class="fade-in fade-in-delay-1 mission-card bg-white p-8 text-center shadow-sm">
+                    <div class="w-14 h-14 mx-auto mb-5 flex items-center justify-center">
+                        <iconify-icon icon="lucide:flame" width="28" height="28" class="text-gold"></iconify-icon>
+                    </div>
+                    <h3 class="font-cinzel text-deep-blue text-base font-semibold mb-3">Prayer</h3>
+                    <p class="font-source text-text-muted text-sm font-light leading-relaxed">A life dedicated to continuous worship and spiritual intercession.</p>
+                </div>
+
+                <!-- Service -->
+                <div class="fade-in fade-in-delay-2 mission-card bg-white p-8 text-center shadow-sm">
+                    <div class="w-14 h-14 mx-auto mb-5 flex items-center justify-center">
+                        <iconify-icon icon="lucide:heart-handshake" width="28" height="28" class="text-gold"></iconify-icon>
+                    </div>
+                    <h3 class="font-cinzel text-deep-blue text-base font-semibold mb-3">Service</h3>
+                    <p class="font-source text-text-muted text-sm font-light leading-relaxed">Providing charity, food, and shelter to those in need.</p>
+                </div>
+
+                <!-- Community -->
+                <div class="fade-in fade-in-delay-3 mission-card bg-white p-8 text-center shadow-sm">
+                    <div class="w-14 h-14 mx-auto mb-5 flex items-center justify-center">
+                        <iconify-icon icon="lucide:users" width="28" height="28" class="text-gold"></iconify-icon>
+                    </div>
+                    <h3 class="font-cinzel text-deep-blue text-base font-semibold mb-3">Community</h3>
+                    <p class="font-source text-text-muted text-sm font-light leading-relaxed">Fostering a strong, faith-based local and global community.</p>
+                </div>
+
+                <!-- Monastic Life -->
+                <div class="fade-in fade-in-delay-4 mission-card bg-white p-8 text-center shadow-sm">
+                    <div class="w-14 h-14 mx-auto mb-5 flex items-center justify-center">
+                        <iconify-icon icon="lucide:book-open" width="28" height="28" class="text-gold"></iconify-icon>
+                    </div>
+                    <h3 class="font-cinzel text-deep-blue text-base font-semibold mb-3">Monastic Life</h3>
+                    <p class="font-source text-text-muted text-sm font-light leading-relaxed">The discipline, silence, and devotion of our brethren.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============ HISTORY ============ -->
+    <section id="history" class="py-20 md:py-32 bg-deep-blue relative overflow-hidden">
+        <!-- Cross Pattern Overlay -->
+        <div class="absolute inset-0 cross-pattern"></div>
+
+        <div class="relative z-10 max-w-[1280px] mx-auto px-6">
+            <!-- Section Intro -->
+            <div class="max-w-[800px] mx-auto text-center mb-16 md:mb-20">
+                <p class="fade-in font-cinzel text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Through the Centuries</p>
+                <h2 class="fade-in fade-in-delay-1 font-cinzel text-gold text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-6">A Legacy of Faith</h2>
+                <div class="fade-in fade-in-delay-2 manuscript-divider">
+                    <div class="line" style="background: linear-gradient(to right, transparent, rgba(200,163,77,0.5), transparent)"></div>
+                    <div class="diamond" style="opacity:0.6"></div>
+                    <div class="line" style="background: linear-gradient(to right, transparent, rgba(200,163,77,0.5), transparent)"></div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="relative max-w-[900px] mx-auto">
+                <div class="timeline-line hidden md:block"></div>
+
+                <!-- Origin -->
+                <div class="fade-in relative md:flex items-center mb-16 md:mb-24">
+                    <div class="timeline-node hidden md:block" style="top:30px"></div>
+                    <div class="md:w-1/2 md:pr-16 md:text-right">
+                        <span class="font-cinzel text-gold text-2xl md:text-3xl font-light">6th Century</span>
+                        <h3 class="font-cinzel text-cream text-xl md:text-2xl font-semibold mt-2 mb-4">The Sacred Origins</h3>
+                        <p class="font-eb text-cream/70 text-base leading-relaxed">
+                            Founded by devout fathers who sought the solitude of the Ethiopian highlands, our monastery began as a humble sanctuary of prayer. Through divine inspiration and unwavering faith, a community of monks established a sacred space that would endure for centuries.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2 md:pl-16 mt-6 md:mt-0">
+                        <div class="rounded overflow-hidden shadow-xl border border-gold/20">
+                            <img src="https://picsum.photos/seed/ancient-monastery-stone/600/400.jpg" alt="Ancient Monastery" class="w-full h-52 object-cover hover:scale-105 transition-transform duration-700">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spiritual Legacy -->
+                <div class="fade-in relative md:flex items-center mb-16 md:mb-24">
+                    <div class="timeline-node hidden md:block" style="top:30px"></div>
+                    <div class="md:w-1/2 md:pr-16 md:text-right md:order-1 order-2 mt-6 md:mt-0">
+                        <div class="rounded overflow-hidden shadow-xl border border-gold/20">
+                            <img src="https://picsum.photos/seed/monastic-prayer-candle/600/400.jpg" alt="Spiritual Legacy" class="w-full h-52 object-cover hover:scale-105 transition-transform duration-700">
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-16 md:order-2 order-1">
+                        <span class="font-cinzel text-gold text-2xl md:text-3xl font-light">12th Century</span>
+                        <h3 class="font-cinzel text-cream text-xl md:text-2xl font-semibold mt-2 mb-4">Spiritual Legacy</h3>
+                        <p class="font-eb text-cream/70 text-base leading-relaxed">
+                            The fathers and mothers who kept the faith alive through periods of both prosperity and trial. Their devotion carved not only stone but the very soul of our tradition, creating a spiritual legacy that guides us to this day.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cultural Preservation -->
+                <div class="fade-in relative md:flex items-center">
+                    <div class="timeline-node hidden md:block" style="top:30px"></div>
+                    <div class="md:w-1/2 md:pr-16 md:text-right">
+                        <span class="font-cinzel text-gold text-2xl md:text-3xl font-light">Present Day</span>
+                        <h3 class="font-cinzel text-cream text-xl md:text-2xl font-semibold mt-2 mb-4">Cultural Preservation</h3>
+                        <p class="font-eb text-cream/70 text-base leading-relaxed">
+                            Protecting ancient manuscripts and sacred art, our monastery continues its mission of preservation. We safeguard thousands of Geez manuscripts, illuminated icons, and liturgical objects — living testimonies of our unbroken heritage.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2 md:pl-16 mt-6 md:mt-0">
+                        <div class="rounded overflow-hidden shadow-xl border border-gold/20">
+                            <img src="https://picsum.photos/seed/ancient-manuscript-geeze/600/400.jpg" alt="Cultural Preservation" class="w-full h-52 object-cover hover:scale-105 transition-transform duration-700">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============ DONATION ============ -->
+    <section id="donate" class="py-20 md:py-32 relative">
+        <div class="max-w-[800px] mx-auto px-6 text-center">
+            <!-- Trust Images -->
+            <div class="fade-in flex items-center justify-center gap-3 mb-10">
+                <div class="w-20 h-16 rounded overflow-hidden border-2 border-gold/30 shadow-sm">
+                    <img src="https://picsum.photos/seed/ancient-manuscript-scroll/200/160.jpg" alt="Manuscript" class="w-full h-full object-cover">
+                </div>
+                <div class="w-20 h-16 rounded overflow-hidden border-2 border-gold/30 shadow-sm">
+                    <img src="https://picsum.photos/seed/community-feeding-service/200/160.jpg" alt="Community Service" class="w-full h-full object-cover">
+                </div>
+                <div class="w-20 h-16 rounded overflow-hidden border-2 border-gold/30 shadow-sm">
+                    <img src="https://picsum.photos/seed/monastic-church-candle/200/160.jpg" alt="Monastic Prayer" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Section Heading -->
+            <p class="fade-in font-cinzel text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Your Generosity Matters</p>
+            <h2 class="fade-in fade-in-delay-1 font-cormorant text-deep-red text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-6">
+                Support Sacred Work<br>For Future Generations.
+            </h2>
+
+            <div class="fade-in fade-in-delay-2 manuscript-divider my-6">
+                <div class="line"></div><div class="diamond"></div><div class="line"></div>
+            </div>
+
+            <p class="fade-in fade-in-delay-2 font-source text-text-muted text-lg font-light leading-relaxed mb-12 max-w-[640px] mx-auto">
+                Your generosity sustains our community support, preserves ancient traditions, educates the next generation, and funds essential charitable activities.
+            </p>
+
+            <!-- Trust Indicators -->
+            <div class="fade-in fade-in-delay-3 grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center mb-3">
+                        <iconify-icon icon="lucide:shield-check" width="20" height="20" class="text-gold"></iconify-icon>
+                    </div>
+                    <span class="font-cinzel text-deep-blue text-[11px] tracking-wider uppercase font-medium">Transparency</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center mb-3">
+                        <iconify-icon icon="lucide:heart" width="20" height="20" class="text-gold"></iconify-icon>
+                    </div>
+                    <span class="font-cinzel text-deep-blue text-[11px] tracking-wider uppercase font-medium">Community Impact</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center mb-3">
+                        <iconify-icon icon="lucide:landmark" width="20" height="20" class="text-gold"></iconify-icon>
+                    </div>
+                    <span class="font-cinzel text-deep-blue text-[11px] tracking-wider uppercase font-medium">Historical Continuity</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center mb-3">
+                        <iconify-icon icon="lucide:crown" width="20" height="20" class="text-gold"></iconify-icon>
+                    </div>
+                    <span class="font-cinzel text-deep-blue text-[11px] tracking-wider uppercase font-medium">Religious Leadership</span>
+                </div>
+            </div>
+
+            <!-- Donation CTA -->
+            <div class="fade-in fade-in-delay-4">
+                <a href="#" id="donateBtn" class="inline-block bg-deep-blue text-gold border-2 border-gold/30 px-14 py-5 font-cinzel text-sm tracking-[0.15em] uppercase hover:bg-gold hover:text-deep-blue hover:border-gold transition-all duration-400">
+                    Donate Today
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============ ANNOUNCEMENTS ============ -->
+    <section id="announcements" class="py-20 md:py-32 bg-white/60">
+        <div class="max-w-[1280px] mx-auto px-6">
+            <!-- Section Intro -->
+            <div class="max-w-[800px] mx-auto text-center mb-16">
+                <p class="fade-in font-cinzel text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Upcoming Events</p>
+                <h2 class="fade-in fade-in-delay-1 font-cinzel text-deep-blue text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-6">Announcements</h2>
+                <div class="fade-in fade-in-delay-2 manuscript-divider">
+                    <div class="line"></div><div class="diamond"></div><div class="line"></div>
+                </div>
+            </div>
+
+            <!-- Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Card 1 -->
+                <div class="fade-in group bg-white p-8 shadow-sm hover:shadow-md transition-shadow duration-400">
+                    <div class="flex items-start gap-5 mb-5">
+                        <div class="date-block bg-deep-red text-white text-center px-3 py-2 flex-shrink-0">
+                            <span class="block font-cinzel text-lg font-bold leading-none">12</span>
+                            <span class="block font-cinzel text-[10px] tracking-wider uppercase mt-0.5">Oct</span>
+                        </div>
+                        <div>
+                            <h3 class="font-eb text-deep-blue text-xl font-semibold leading-snug">Feast of St. Tekle Haymanot</h3>
+                        </div>
+                    </div>
+                    <p class="font-source text-text-muted text-sm font-light leading-relaxed mb-5">
+                        Join us for the annual celebration honoring one of Ethiopia's most revered saints. The feast includes special liturgy, processional hymns, and communal fellowship.
+                    </p>
+                    <a href="#" class="font-cinzel text-gold text-xs tracking-wider uppercase hover:text-deep-blue transition-colors duration-300 inline-flex items-center gap-2 group/link">
+                        Read More
+                        <iconify-icon icon="lucide:arrow-right" width="14" height="14" class="group-hover/link:translate-x-1 transition-transform duration-300"></iconify-icon>
+                    </a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="fade-in fade-in-delay-1 group bg-white p-8 shadow-sm hover:shadow-md transition-shadow duration-400">
+                    <div class="flex items-start gap-5 mb-5">
+                        <div class="date-block bg-deep-red text-white text-center px-3 py-2 flex-shrink-0">
+                            <span class="block font-cinzel text-lg font-bold leading-none">28</span>
+                            <span class="block font-cinzel text-[10px] tracking-wider uppercase mt-0.5">Nov</span>
+                        </div>
+                        <div>
+                            <h3 class="font-eb text-deep-blue text-xl font-semibold leading-snug">Beginning of the Fast of Advent</h3>
+                        </div>
+                    </div>
+                    <p class="font-source text-text-muted text-sm font-light leading-relaxed mb-5">
+                        The holy fast of Tsome Nebiyat begins, preparing the faithful for the celebration of Lidet (Christmas). Spiritual guidance and fasting schedules available.
+                    </p>
+                    <a href="#" class="font-cinzel text-gold text-xs tracking-wider uppercase hover:text-deep-blue transition-colors duration-300 inline-flex items-center gap-2 group/link">
+                        Read More
+                        <iconify-icon icon="lucide:arrow-right" width="14" height="14" class="group-hover/link:translate-x-1 transition-transform duration-300"></iconify-icon>
+                    </a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="fade-in fade-in-delay-2 group bg-white p-8 shadow-sm hover:shadow-md transition-shadow duration-400">
+                    <div class="flex items-start gap-5 mb-5">
+                        <div class="date-block bg-deep-red text-white text-center px-3 py-2 flex-shrink-0">
+                            <span class="block font-cinzel text-lg font-bold leading-none">07</span>
+                            <span class="block font-cinzel text-[10px] tracking-wider uppercase mt-0.5">Jan</span>
+                        </div>
+                        <div>
+                            <h3 class="font-eb text-deep-blue text-xl font-semibold leading-snug">Ethiopian Christmas — Lidet</h3>
+                        </div>
+                    </div>
+                    <p class="font-source text-text-muted text-sm font-light leading-relaxed mb-5">
+                        Celebrate the birth of Christ with the traditional Ethiopian Orthodox liturgy, beginning at midnight and continuing through the early morning hours.
+                    </p>
+                    <a href="#" class="font-cinzel text-gold text-xs tracking-wider uppercase hover:text-deep-blue transition-colors duration-300 inline-flex items-center gap-2 group/link">
+                        Read More
+                        <iconify-icon icon="lucide:arrow-right" width="14" height="14" class="group-hover/link:translate-x-1 transition-transform duration-300"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============ GALLERY ============ -->
+    <section id="gallery" class="py-20 md:py-32">
+        <div class="max-w-[1280px] mx-auto px-6">
+            <!-- Section Intro -->
+            <div class="max-w-[800px] mx-auto text-center mb-16">
+                <p class="fade-in font-cinzel text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Life & Sacred Spaces</p>
+                <h2 class="fade-in fade-in-delay-1 font-cinzel text-deep-blue text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-6">Gallery</h2>
+                <div class="fade-in fade-in-delay-2 manuscript-divider">
+                    <div class="line"></div><div class="diamond"></div><div class="line"></div>
+                </div>
+            </div>
+
+            <!-- Masonry Grid -->
+            <div class="masonry">
+                <div class="masonry-item fade-in">
+                    <div class="gallery-img-wrapper border-2 border-white shadow-md cursor-pointer" onclick="openLightbox(this)">
+                        <img src="https://picsum.photos/seed/orthodox-church-interior/600/800.jpg" alt="Church Interior" class="w-full block">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 40 56" class="w-10 h-14 text-gold" fill="currentColor">
+                                <rect x="16" y="0" width="8" height="42" rx="1"/>
+                                <rect x="0" y="13" width="40" height="8" rx="1"/>
+                                <rect x="14" y="-1" width="12" height="4" rx="1.5"/>
+                                <rect x="17" y="42" width="6" height="10"/>
+                                <rect x="14" y="50" width="12" height="3" rx="1.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item fade-in fade-in-delay-1">
+                    <div class="gallery-img-wrapper border-2 border-white shadow-md cursor-pointer" onclick="openLightbox(this)">
+                        <img src="https://picsum.photos/seed/monk-praying-candle/600/500.jpg" alt="Monk Praying" class="w-full block">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 40 56" class="w-10 h-14 text-gold" fill="currentColor">
+                                <rect x="16" y="0" width="8" height="42" rx="1"/>
+                                <rect x="0" y="13" width="40" height="8" rx="1"/>
+                                <rect x="14" y="-1" width="12" height="4" rx="1.5"/>
+                                <rect x="17" y="42" width="6" height="10"/>
+                                <rect x="14" y="50" width="12" height="3" rx="1.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item fade-in fade-in-delay-2">
+                    <div class="gallery-img-wrapper border-2 border-white shadow-md cursor-pointer" onclick="openLightbox(this)">
+                        <img src="https://picsum.photos/seed/ethiopian-manuscript-old/600/700.jpg" alt="Ancient Manuscript" class="w-full block">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 40 56" class="w-10 h-14 text-gold" fill="currentColor">
+                                <rect x="16" y="0" width="8" height="42" rx="1"/>
+                                <rect x="0" y="13" width="40" height="8" rx="1"/>
+                                <rect x="14" y="-1" width="12" height="4" rx="1.5"/>
+                                <rect x="17" y="42" width="6" height="10"/>
+                                <rect x="14" y="50" width="12" height="3" rx="1.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item fade-in">
+                    <div class="gallery-img-wrapper border-2 border-white shadow-md cursor-pointer" onclick="openLightbox(this)">
+                        <img src="https://picsum.photos/seed/lalibela-rock-church/600/450.jpg" alt="Rock-Hewn Church" class="w-full block">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 40 56" class="w-10 h-14 text-gold" fill="currentColor">
+                                <rect x="16" y="0" width="8" height="42" rx="1"/>
+                                <rect x="0" y="13" width="40" height="8" rx="1"/>
+                                <rect x="14" y="-1" width="12" height="4" rx="1.5"/>
+                                <rect x="17" y="42" width="6" height="10"/>
+                                <rect x="14" y="50" width="12" height="3" rx="1.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item fade-in fade-in-delay-1">
+                    <div class="gallery-img-wrapper border-2 border-white shadow-md cursor-pointer" onclick="openLightbox(this)">
+                        <img src="https://picsum.photos/seed/ethiopian-community-feast/600/650.jpg" alt="Community Feast" class="w-full block">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 40 56" class="w-10 h-14 text-gold" fill="currentColor">
+                                <rect x="16" y="0" width="8" height="42" rx="1"/>
+                                <rect x="0" y="13" width="40" height="8" rx="1"/>
+                                <rect x="14" y="-1" width="12" height="4" rx="1.5"/>
+                                <rect x="17" y="42" width="6" height="10"/>
+                                <rect x="14" y="50" width="12" height="3" rx="1.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item fade-in fade-in-delay-2">
+                    <div class="gallery-img-wrapper border-2 border-white shadow-md cursor-pointer" onclick="openLightbox(this)">
+                        <img src="https://picsum.photos/seed/orthodox-procession-cross/600/550.jpg" alt="Procession" class="w-full block">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 40 56" class="w-10 h-14 text-gold" fill="currentColor">
+                                <rect x="16" y="0" width="8" height="42" rx="1"/>
+                                <rect x="0" y="13" width="40" height="8" rx="1"/>
+                                <rect x="14" y="-1" width="12" height="4" rx="1.5"/>
+                                <rect x="17" y="42" width="6" height="10"/>
+                                <rect x="14" y="50" width="12" height="3" rx="1.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="py-0">
+        <div class="max-w-[1280px] mx-auto">
+            <div class="flex flex-col md:flex-row">
+                <!-- Left Column: Info -->
+                <div class="w-full md:w-[40%] bg-deep-blue p-10 md:p-16 text-cream relative overflow-hidden">
+                    <div class="absolute inset-0 cross-pattern"></div>
+                    <div class="relative z-10">
+                        <p class="fade-in font-cinzel text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Get In Touch</p>
+                        <h2 class="fade-in fade-in-delay-1 font-cinzel text-cream text-3xl md:text-4xl font-semibold leading-tight mb-8">Contact & Visit</h2>
+
+                        <div class="space-y-8">
+                            <div class="fade-in fade-in-delay-2 flex items-start gap-4">
+                                <iconify-icon icon="lucide:map-pin" width="20" height="20" class="text-gold mt-1 flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <p class="font-source text-cream/90 text-base font-light leading-relaxed">
+                                        Debre Libanos Monastery,<br>
+                                        North Shewa Zone, Oromia,<br>
+                                        Ethiopia
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="fade-in fade-in-delay-3 flex items-start gap-4">
+                                <iconify-icon icon="lucide:phone" width="20" height="20" class="text-gold mt-1 flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <p class="font-source text-cream/90 text-base font-light">+251 11 123 4567</p>
+                                </div>
+                            </div>
+
+                            <div class="fade-in fade-in-delay-4 flex items-start gap-4">
+                                <iconify-icon icon="lucide:mail" width="20" height="20" class="text-gold mt-1 flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <p class="font-source text-cream/90 text-base font-light">info@debrelibanosmonastery.org</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Visit Guidelines -->
+                        <div class="mt-12 pt-8 border-t border-cream/10">
+                            <h3 class="font-cinzel text-gold text-sm tracking-wider uppercase mb-4">Plan Your Visit</h3>
+                            <div class="space-y-3 font-source text-cream/70 text-sm font-light leading-relaxed">
+                                <p><span class="text-cream/90 font-normal">Holy Liturgy:</span> Daily at 6:00 AM</p>
+                                <p><span class="text-cream/90 font-normal">Vespers:</span> Daily at 5:00 PM</p>
+                                <p><span class="text-cream/90 font-normal">Visiting Hours:</span> 8:00 AM — 5:00 PM</p>
+                                <p class="text-cream/50 text-xs mt-4 leading-relaxed">Visitors are kindly requested to dress modestly and maintain the sacred atmosphere of the monastery grounds.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Map -->
+                <div class="w-full md:w-[60%] map-container min-h-[400px] md:min-h-[600px] flex items-center justify-center relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-stone-200 to-stone-100"></div>
+                    <!-- Stylized Map Placeholder -->
+                    <div class="relative z-10 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                            <div class="relative">
+                                <iconify-icon icon="lucide:map-pin" width="48" height="48" class="text-deep-red"></iconify-icon>
+                                <svg viewBox="0 0 20 20" class="absolute top-2 left-1/2 -translate-x-1/2 w-4 h-4 text-gold" fill="currentColor">
+                                    <rect x="7" y="0" width="6" height="18" rx="0.5"/>
+                                    <rect x="0" y="6" width="20" height="6" rx="0.5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="font-cinzel text-deep-blue text-sm tracking-wider uppercase">Debre Libanos</p>
+                        <p class="font-source text-text-muted text-sm font-light mt-1">North Shewa, Ethiopia</p>
+                        <a href="https://maps.google.com" target="_blank" class="inline-block mt-4 font-cinzel text-gold text-xs tracking-wider uppercase border border-gold/40 px-6 py-2.5 hover:bg-gold hover:text-deep-blue transition-all duration-300">
+                            Open in Maps
+                        </a>
+                    </div>
+                    <!-- Decorative grid lines -->
+                    <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(#0D2C54 1px, transparent 1px), linear-gradient(90deg, #0D2C54 1px, transparent 1px); background-size: 80px 80px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="relative py-24 md:py-32 bg-deep-red overflow-hidden">
+        <div class="absolute inset-0 cross-pattern"></div>
+        <div class="relative z-10 max-w-[800px] mx-auto px-6 text-center">
+            <div class="fade-in mb-6">
+                <svg viewBox="0 0 40 56" class="w-8 h-11 mx-auto text-gold/60" fill="currentColor">
+                    <rect x="16" y="0" width="8" height="42" rx="1"/>
+                    <rect x="0" y="13" width="40" height="8" rx="1"/>
+                    <rect x="14" y="-1" width="12" height="4" rx="1.5"/>
+                    <rect x="17" y="42" width="6" height="10"/>
+                    <rect x="14" y="50" width="12" height="3" rx="1.5"/>
+                </svg>
+            </div>
+            <h2 class="fade-in fade-in-delay-1 font-cormorant text-gold text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-8">
+                Join Us In Preserving<br>Faith And Heritage.
+            </h2>
+            <p class="fade-in fade-in-delay-2 font-source text-cream/70 text-lg font-light leading-relaxed mb-10 max-w-[560px] mx-auto">
+                Your support ensures that centuries of sacred tradition, scholarship, and community service continue for generations to come.
+            </p>
+            <div class="fade-in fade-in-delay-3">
+                <a href="#donate" class="inline-block bg-white text-deep-red px-14 py-4 font-cinzel text-sm tracking-[0.12em] uppercase hover:bg-gold hover:text-deep-blue transition-all duration-300 shadow-lg">
+                    Support Our Mission
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="bg-cream pt-16 pb-8">
+        <div class="max-w-[1280px] mx-auto px-6">
+            <!-- Gold Divider -->
+            <div class="manuscript-divider mb-12">
+                <div class="line w-32"></div>
+                <div class="diamond"></div>
+                <div class="line w-32"></div>
+            </div>
+
+            <!-- Cross Motif -->
+            <div class="text-center mb-8">
+                <svg viewBox="0 0 40 56" class="w-6 h-8 mx-auto text-gold" fill="currentColor">
+                    <rect x="16" y="0" width="8" height="42" rx="1"/>
+                    <rect x="0" y="13" width="40" height="8" rx="1"/>
+                    <rect x="14" y="-1" width="12" height="4" rx="1.5"/>
+                    <rect x="17" y="42" width="6" height="10"/>
+                    <rect x="14" y="50" width="12" height="3" rx="1.5"/>
+                </svg>
+            </div>
+
+            <!-- Monastery Name -->
+            <h3 class="font-cinzel text-deep-blue text-lg tracking-[0.15em] uppercase text-center mb-8">Debre Libanos Monastery</h3>
+
+            <!-- Quick Links -->
+            <div class="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-12">
+                <a href="#mission" class="font-source text-text-muted text-sm hover:text-gold transition-colors duration-300">Mission</a>
+                <a href="#history" class="font-source text-text-muted text-sm hover:text-gold transition-colors duration-300">History</a>
+                <a href="#donate" class="font-source text-text-muted text-sm hover:text-gold transition-colors duration-300">Donate</a>
+                <a href="#gallery" class="font-source text-text-muted text-sm hover:text-gold transition-colors duration-300">Gallery</a>
+                <a href="#contact" class="font-source text-text-muted text-sm hover:text-gold transition-colors duration-300">Contact</a>
+            </div>
+
+            <!-- Social Icons -->
+            <div class="flex items-center justify-center gap-4 mb-10">
+                <a href="#" class="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center text-gold hover:bg-gold hover:text-deep-blue transition-all duration-300">
+                    <iconify-icon icon="lucide:facebook" width="16" height="16"></iconify-icon>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center text-gold hover:bg-gold hover:text-deep-blue transition-all duration-300">
+                    <iconify-icon icon="lucide:instagram" width="16" height="16"></iconify-icon>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center text-gold hover:bg-gold hover:text-deep-blue transition-all duration-300">
+                    <iconify-icon icon="lucide:youtube" width="16" height="16"></iconify-icon>
+                </a>
+            </div>
+
+            <!-- Bottom Divider -->
+            <div class="border-t border-gold/15 pt-6">
+                <p class="font-source text-text-muted/60 text-xs text-center tracking-wide">
+                    © 2026 Debre Libanos Ethiopian Orthodox Monastery. All rights reserved. Soli Deo Gloria. Developed By Al Mahmud.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ============ LIGHTBOX ============ -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <button onclick="closeLightbox(event)" class="absolute top-6 right-6 text-white/60 hover:text-gold transition-colors z-10">
+            <iconify-icon icon="lucide:x" width="28" height="28"></iconify-icon>
+        </button>
+        <img id="lightboxImg" src="" alt="Gallery Image">
+    </div>
+
+
+    <!-- ============ DONATION MODAL ============ -->
+    <div id="donateModal" class="fixed inset-0 z-[90] hidden items-center justify-center p-4" style="background:rgba(0,0,0,0.7);">
+        <div class="bg-cream max-w-md w-full p-10 relative shadow-2xl" onclick="event.stopPropagation()">
+            <button onclick="closeDonateModal()" class="absolute top-4 right-4 text-text-muted hover:text-deep-red transition-colors">
+                <iconify-icon icon="lucide:x" width="20" height="20"></iconify-icon>
+            </button>
+
+            <div class="text-center mb-8">
+                <svg viewBox="0 0 40 56" class="w-6 h-8 mx-auto text-gold mb-4" fill="currentColor">
+                    <rect x="16" y="0" width="8" height="42" rx="1"/>
+                    <rect x="0" y="13" width="40" height="8" rx="1"/>
+                    <rect x="14" y="-1" width="12" height="4" rx="1.5"/>
+                    <rect x="17" y="42" width="6" height="10"/>
+                    <rect x="14" y="50" width="12" height="3" rx="1.5"/>
+                </svg>
+                <h3 class="font-cinzel text-deep-blue text-xl tracking-wide">Make a Donation</h3>
+                <p class="font-source text-text-muted text-sm font-light mt-2">Your generosity supports sacred work.</p>
+            </div>
+
+            <!-- Amount Buttons -->
+            <div class="grid grid-cols-3 gap-3 mb-6">
+                <button class="donation-amount border border-gold/30 py-3 font-cinzel text-deep-blue text-sm tracking-wider hover:bg-gold hover:text-deep-blue transition-all" data-amount="25">$25</button>
+                <button class="donation-amount border border-gold/30 py-3 font-cinzel text-deep-blue text-sm tracking-wider hover:bg-gold hover:text-deep-blue transition-all bg-gold/10" data-amount="50">$50</button>
+                <button class="donation-amount border border-gold/30 py-3 font-cinzel text-deep-blue text-sm tracking-wider hover:bg-gold hover:text-deep-blue transition-all" data-amount="100">$100</button>
+            </div>
+
+            <div class="mb-6">
+                <input type="number" placeholder="Custom Amount ($)" class="w-full border border-gold/30 bg-white px-4 py-3 font-source text-text-dark text-sm focus:outline-none focus:border-gold transition-colors">
+            </div>
+
+            <div class="mb-6">
+                <input type="text" placeholder="Full Name" class="w-full border border-gold/30 bg-white px-4 py-3 font-source text-text-dark text-sm focus:outline-none focus:border-gold transition-colors">
+            </div>
+
+            <div class="mb-6">
+                <input type="email" placeholder="Email Address" class="w-full border border-gold/30 bg-white px-4 py-3 font-source text-text-dark text-sm focus:outline-none focus:border-gold transition-colors">
+            </div>
+
+            <button id="submitDonation" class="w-full bg-deep-blue text-gold border-2 border-gold/30 py-4 font-cinzel text-sm tracking-[0.12em] uppercase hover:bg-gold hover:text-deep-blue transition-all duration-300">
+                Complete Donation
+            </button>
+
+            <p class="font-source text-text-muted/50 text-[10px] text-center mt-4 tracking-wide">
+                Secure payment. All donations are tax-deductible.
+            </p>
+        </div>
+    </div>
+
+
+    <!-- ============ TOAST ============ -->
+    <div id="toast" class="fixed bottom-6 right-6 z-[100] bg-deep-blue text-gold px-6 py-4 shadow-xl font-cinzel text-xs tracking-wider transform translate-y-20 opacity-0 transition-all duration-500 pointer-events-none">
+        Thank you for your generous heart!
+    </div>
+
+
+    <!-- ============ JAVASCRIPT ============ -->
+    <script>
+        // ===== Intersection Observer for Fade-In =====
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+
+        // ===== Navbar Scroll Effect =====
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+
+        // ===== Mobile Menu Toggle =====
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('iconify-icon');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.setAttribute('icon', 'lucide:menu');
+            } else {
+                icon.setAttribute('icon', 'lucide:x');
+            }
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.querySelector('iconify-icon').setAttribute('icon', 'lucide:menu');
+            });
+        });
+
+
+        // ===== Gallery Lightbox =====
+        function openLightbox(wrapper) {
+            const img = wrapper.querySelector('img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(e) {
+            if (e.target === document.getElementById('lightbox') || e.currentTarget.tagName === 'BUTTON') {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('lightbox').classList.remove('active');
+                document.getElementById('donateModal').style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+
+        // ===== Donation Modal =====
+        const donateBtn = document.getElementById('donateBtn');
+        const donateModal = document.getElementById('donateModal');
+
+        donateBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            donateModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+
+        donateModal.addEventListener('click', (e) => {
+            if (e.target === donateModal) {
+                closeDonateModal();
+            }
+        });
+
+        function closeDonateModal() {
+            donateModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // Donation amount selection
+        document.querySelectorAll('.donation-amount').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.donation-amount').forEach(b => b.classList.remove('bg-gold/10'));
+                btn.classList.add('bg-gold/10');
+                const customInput = donateModal.querySelector('input[type="number"]');
+                customInput.value = btn.dataset.amount;
+            });
+        });
+
+        // Submit donation
+        document.getElementById('submitDonation').addEventListener('click', () => {
+            closeDonateModal();
+            showToast();
+        });
+
+
+        // ===== Toast Notification =====
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.transform = 'translateY(0)';
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.transform = 'translateY(20px)';
+                toast.style.opacity = '0';
+            }, 3500);
+        }
+
+
+        // ===== Smooth Scroll for Anchor Links =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
